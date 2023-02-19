@@ -1,0 +1,35 @@
+// proto version
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "com.citi.leo.shopping.proto";
+
+option java_outer_classname = "ShoppingProto";
+
+// logical package
+package shopping;
+
+service ShoppingService {
+    //
+    rpc search(ShoppingRequest) returns (ShoppingResponse) {}
+
+    rpc list(ShoppingRequests) returns (stream ShoppingResponse) {}
+}
+
+message ShoppingRequest {
+    string commodityType = 1;
+}
+
+message ShoppingResponse {
+    repeated Commodity commodity = 1;
+}
+
+//
+message Commodity {
+    string brand = 1;
+    double price = 2;
+}
+
+message ShoppingRequests {
+    repeated string commodityType = 1;
+}

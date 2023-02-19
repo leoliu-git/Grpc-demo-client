@@ -1,0 +1,25 @@
+// proto version
+syntax = "proto3";
+
+option java_multiple_files = false;
+option java_package = "com.citi.leo.account.proto";
+
+option java_outer_classname = "AccountProto";
+
+// logical package
+package account;
+
+service AccountService {
+
+    rpc registerAccount(stream RegistrationRequest) returns (RegistrationResponse) {}
+
+    rpc registerAndNotify(stream RegistrationRequest) returns (stream RegistrationResponse){}
+}
+
+message RegistrationRequest {
+    string phoneNumber = 1;
+}
+
+message RegistrationResponse {
+    string result = 1;
+}
